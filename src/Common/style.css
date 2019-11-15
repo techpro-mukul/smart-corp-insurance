@@ -1,0 +1,12 @@
+.menu-link{
+    font-size: 20px;
+    text-decoration: none;
+}
+.menu-link:hover{
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+}
+.menu-link:visited {
+    text-decoration: none;
+}
