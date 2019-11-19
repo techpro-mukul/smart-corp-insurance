@@ -16,6 +16,7 @@ class InsuranceRelated extends React.Component {
             userName: '',
             uniqueFormId: '',
             insurancePolicy: '',
+            policyList:[],
             claimReason: '',
             messageSuccess: '',
             messageError: '',
@@ -23,6 +24,7 @@ class InsuranceRelated extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeFarm = this.handleChangeFarm.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -31,6 +33,23 @@ class InsuranceRelated extends React.Component {
         this.setState({
             userName: this.props.user.firstName,
             [name]: value
+        });
+        console.log(this.state);
+    }
+
+    handleChangeFarm(event) {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+        let farmInsuranceData = JSON.parse(localStorage.getItem("farmInsuranceData")) || {};
+        let policies = farmInsuranceData[value];
+        if(!policies){
+            policies = [];
+        }
+        this.setState({
+            policyList: policies
+         
         });
         console.log(this.state);
     }
@@ -62,7 +81,7 @@ class InsuranceRelated extends React.Component {
                 });
         } else {
             if (uniqueFormId == "") {
-                this.setState({ messageError: 'Select unique form id', messageSuccess: '' });
+                this.setState({ messageError: 'Select unique farm id', messageSuccess: '' });
             }
             if (insurancePolicy == "") {
                 this.setState({ messageError: 'Select insurance policy', messageSuccess: '' });
@@ -75,7 +94,13 @@ class InsuranceRelated extends React.Component {
 
     render() {
         const { user, users } = this.props;
-        const { messageSuccess, messageError } = this.state;
+        const { messageSuccess, messageError, policyList } = this.state;
+        let farmDetails = JSON.parse(localStorage.getItem("allFarmDetails")) || {};
+        let currentUserFarms = farmDetails[this.props.user.username];
+        let farmList = [];
+        if (currentUserFarms) {
+            farmList = currentUserFarms.farmList;
+        }
         return (
             <div>
                 <div className="col-md-10" style={{ textAlign: "center" }}>
@@ -90,15 +115,14 @@ class InsuranceRelated extends React.Component {
                             </div>
                             <table width="80%" style={{ margin: "0 auto", border: "0px solid", textAlign: "center" }}>
                                 <tr>
-                                    <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>Unique Form Id:</td>
+                                    <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>Unique Farm Id:</td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
-                                        <select name="uniqueFormId" onChange={this.handleChange}
+                                        <select name="uniqueFormId" onChange={this.handleChangeFarm}
                                             className="form-control" style={{ width: "50%" }} >
-                                            <option value="">--Select--</option>
-                                            <option value="1">Form 1</option>
-                                            <option value="2">Form 2</option>
-                                            <option value="3">Form 3</option>
-                                            <option value="4">Form 4</option>
+                                            <option value="" >--Select--</option>
+                                                {farmList.map(function (name, index) {
+                                                     return <option value={name}>{name}</option>
+                                                })}
                                         </select>
                                     </td>
                                 </tr>
@@ -107,11 +131,10 @@ class InsuranceRelated extends React.Component {
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                         <select name="insurancePolicy" onChange={this.handleChange}
                                             className="form-control" style={{ width: "50%" }}>
-                                            <option value="">--Select--</option>
-                                            <option value="1">policy 1</option>
-                                            <option value="2">policy 2</option>
-                                            <option value="3">policy 3</option>
-                                            <option value="4">policy 4</option>
+                                            <option value="" selected>--Select--</option>
+                                                {policyList.map(function (name, index) {
+                                                     return <option value={name}>{name}</option>
+                                                })}
                                         </select>
                                     </td>
                                 </tr>

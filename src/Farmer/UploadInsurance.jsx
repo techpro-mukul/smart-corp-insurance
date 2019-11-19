@@ -61,14 +61,28 @@ class UploadInsurance extends React.Component {
                     'content-type': 'multipart/form-data'
                 }
             }
+            // Move this to post success
+            let farmInsuranceData = JSON.parse(localStorage.getItem("farmInsuranceData")) || {};
+            let policyList = farmInsuranceData[uniqueFormId];
+            if(policyList){
+                policyList.push(uniqueFormId);
+            }else{
+                policyList = [];
+                policyList.push(uniqueFormId);
+            }
+            farmInsuranceData[uniqueFormId] = policyList;
+            localStorage.setItem("farmInsuranceData", JSON.stringify(farmInsuranceData));
+            //
             return post(url, formData, config)
-                .then(response => console.log(response))
+                .then(response => {
+                    console.log(response)
+                })
                 .catch(error => {
                     console.log("error is:  " + error);
                 });
         } else {
             if (uniqueFormId == "") {
-                this.setState({ messageError: 'Select unique form id', messageSuccess: '' });
+                this.setState({ messageError: 'Select unique farm id', messageSuccess: '' });
             }
             if (file == "") {
                 this.setState({ messageError: 'Select file to upload', messageSuccess: '' });
@@ -79,6 +93,12 @@ class UploadInsurance extends React.Component {
     render() {
         const { user, users } = this.props;
         const { messageSuccess, messageError } = this.state;
+        let farmDetails = JSON.parse(localStorage.getItem("allFarmDetails")) || {};
+        let currentUserFarms = farmDetails[this.props.user.username];
+        let farmList = [];
+        if (currentUserFarms) {
+            farmList = currentUserFarms.farmList;
+        }
         return (
             <div>
                 <div className="col-md-10" style={{ textAlign: "center" }}>
@@ -93,22 +113,21 @@ class UploadInsurance extends React.Component {
                             </div>
                             <table width="80%" style={{ margin: "0 auto", border: "0px solid", textAlign: "center" }}>
                                 <tr>
-                                    <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>Unique Form Id: </td>
+                                    <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>Unique Farm Id: </td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                         <select name="uniqueFormId" onChange={this.updateUniqueFormId}
                                             className="form-control" style={{ width: "50%" }}>
                                             <option value="">--Select--</option>
-                                            <option value="1">Form 1</option>
-                                            <option value="2">Form 2</option>
-                                            <option value="3">Form 3</option>
-                                            <option value="4">Form 4</option>
+                                            {farmList.map(function (name, index) {
+                                                return <option value={name}>{name}</option>
+                                            })}
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>Insurance File: </td>
                                     <td style={{ width: "50%", textAlign: "left" }} >
-                                        <input type="file"  onChange={this.handleChange} style={{ width: "50%" }} />
+                                        <input type="file" onChange={this.handleChange} style={{ width: "50%" }} />
                                     </td>
                                 </tr>
                             </table>
