@@ -16,13 +16,13 @@ class UploadFarm extends React.Component {
             userName: '',
             farmId: '',
             SWLongi: '',
-            SWLatti: '',
+            SWLati: '',
             NWLongi: '',
-            NWLatti: '',
+            NWLati: '',
             NELongi: '',
-            NELatti: '',
+            NELati: '',
             SELongi: '',
-            SELatti: '',
+            SELati: '',
             messageSuccess: '',
             messageError: '',
             submitted: false
@@ -48,9 +48,9 @@ class UploadFarm extends React.Component {
 
         //const { user, file } = this.state;
         this.setState({ userName: 'fff' });
-        const { userName, farmId, SWLongi, SWLatti, NWLongi, NWLatti, NELongi, NELatti, SELongi, SELatti } = this.state;
-        console.log(userName + " " + farmId + " " + SWLongi + " " + SWLatti + " " + NWLongi + " " + NWLatti + " " + NELongi + " " + NELatti + " " + SELongi + " " + SELatti);
-        if (userName && farmId && SWLongi && SWLatti && NWLongi && NWLatti && NELongi && NELatti && SELongi && SELatti) {
+        const { userName, farmId, SWLongi, SWLati, NWLongi, NWLati, NELongi, NELati, SELongi, SELati } = this.state;
+        console.log(userName + " " + farmId + " " + SWLongi + " " + SWLati + " " + NWLongi + " " + NWLati + " " + NELongi + " " + NELati + " " + SELongi + " " + SELati);
+        if (userName && farmId && SWLongi && SWLati && NWLongi && NWLati && NELongi && NELati && SELongi && SELati) {
 
             this.setState({ submitted: true, messageSuccess: 'Farm details added Successfully', messageError: '' });
             //this.props.register(userName);
@@ -59,8 +59,7 @@ class UploadFarm extends React.Component {
             let farmDetails = JSON.parse(localStorage.getItem("allFarmDetails")) || {};
             let currentUserFarms = farmDetails[this.props.user.username];
             if (currentUserFarms) {
-                if (!currentUserFarms['farmList'].includes(farmId))
-                {
+                if (!currentUserFarms['farmList'].includes(farmId)) {
                     currentUserFarms['farmList'].push(farmId);
                 }
             }
@@ -88,7 +87,7 @@ class UploadFarm extends React.Component {
                     console.log("error is:  " + error);
                 });
         } else {
-            console.log(userName + " " + farmId + " " + SWLongi + " " + SWLatti + " " + NWLongi + " " + NWLatti + " " + NELongi + " " + NELatti + " " + SELongi + " " + SELatti);
+            console.log(userName + " " + farmId + " " + SWLongi + " " + SWLati + " " + NWLongi + " " + NWLati + " " + NELongi + " " + NELati + " " + SELongi + " " + SELati);
             this.setState({ messageError: 'Please enter all details', messageSuccess: '' });
         }
     }
@@ -113,6 +112,7 @@ class UploadFarm extends React.Component {
                                     <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>Farm Id:</td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                         <input type="text" name="farmId" onChange={this.handleChange} />
+                                        <br></br><br></br>
                                     </td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
 
@@ -121,37 +121,46 @@ class UploadFarm extends React.Component {
                                 <tr>
                                     <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>SW:</td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
-                                        Longitude:<input type="text" name="SWLongi" onChange={this.handleChange} />
+                                    
+                                        <input type="text" name="SWLongi" onChange={this.handleChange} />
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Longitude:</span>
                                     </td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
-                                        Lattitude:<input type="text" name="SWLatti" onChange={this.handleChange} />
+                                        <input type="text" name="SWLati" onChange={this.handleChange} />
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Latitude:</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>NW:</td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
-                                        Longitude:<input type="text" name="NWLongi" onChange={this.handleChange} />
+                                       <input type="text" name="NWLongi" onChange={this.handleChange} />
+                                       <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Longitude:</span>
                                     </td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
-                                        Lattitude:<input type="text" name="NWLatti" onChange={this.handleChange} />
+                                        <input type="text" name="NWLati" onChange={this.handleChange} />
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Latitude:</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>NE:</td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
-                                        Longitude:<input type="text" name="NELongi" onChange={this.handleChange} />
+                                        <input type="text" name="NELongi" onChange={this.handleChange} />
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Longitude:</span>
                                     </td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
-                                        Lattitude:<input type="text" name="NELatti" onChange={this.handleChange} />
+                                        <input type="text" name="NELati" onChange={this.handleChange} />
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Latitude:</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>SE:</td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
-                                        Longitude:<input type="text" name="SELongi" onChange={this.handleChange} />
+                                        <input type="text" name="SELongi" onChange={this.handleChange} />
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Longitude:</span>
                                     </td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
-                                        Lattitude:<input type="text" name="SELatti" onChange={this.handleChange} />
+                                        <input type="text" name="SELati" onChange={this.handleChange} />
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Latitude:</span>
                                     </td>
                                 </tr>
                             </table>
