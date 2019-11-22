@@ -64,11 +64,11 @@ class UploadInsurance extends React.Component {
             // Move this to post success
             let farmInsuranceData = JSON.parse(localStorage.getItem("farmInsuranceData")) || {};
             let policyList = farmInsuranceData[uniqueFormId];
-            if(policyList){
-                policyList.push(uniqueFormId);
-            }else{
+            if (policyList) {
+                policyList.push(uniqueFormId + "-" + (policyList.length + 1));
+            } else {
                 policyList = [];
-                policyList.push(uniqueFormId);
+                policyList.push(uniqueFormId + "-1");
             }
             farmInsuranceData[uniqueFormId] = policyList;
             localStorage.setItem("farmInsuranceData", JSON.stringify(farmInsuranceData));

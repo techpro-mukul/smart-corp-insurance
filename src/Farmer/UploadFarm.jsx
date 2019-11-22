@@ -123,44 +123,44 @@ class UploadFarm extends React.Component {
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                     
                                         <input type="text" name="SWLongi" onChange={this.handleChange} />
-                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Longitude:</span>
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"20%" }}>Longitude:</span>
                                     </td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                         <input type="text" name="SWLati" onChange={this.handleChange} />
-                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Latitude:</span>
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"35%" }}>Latitude:</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>NW:</td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                        <input type="text" name="NWLongi" onChange={this.handleChange} />
-                                       <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Longitude:</span>
+                                       <br></br><span style={{ fontSize: "10px", paddingLeft:"20%" }}>Longitude:</span>
                                     </td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                         <input type="text" name="NWLati" onChange={this.handleChange} />
-                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Latitude:</span>
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"35%" }}>Latitude:</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>NE:</td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                         <input type="text" name="NELongi" onChange={this.handleChange} />
-                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Longitude:</span>
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"20%" }}>Longitude:</span>
                                     </td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                         <input type="text" name="NELati" onChange={this.handleChange} />
-                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Latitude:</span>
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"35%" }}>Latitude:</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style={{ width: "50%", textAlign: "left", fontWeight: "bold" }}>SE:</td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                         <input type="text" name="SELongi" onChange={this.handleChange} />
-                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Longitude:</span>
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"20%" }}>Longitude:</span>
                                     </td>
                                     <td style={{ width: "50%", textAlign: "left" }}>
                                         <input type="text" name="SELati" onChange={this.handleChange} />
-                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"15%" }}>Latitude:</span>
+                                        <br></br><span style={{ fontSize: "10px", paddingLeft:"35%" }}>Latitude:</span>
                                     </td>
                                 </tr>
                             </table>
